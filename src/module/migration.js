@@ -5,7 +5,7 @@ export async function migrateWorld() {
 	const version = game.system.version;
 	ui.notifications.info(game.i18n.format("PBTA.Migration.Begin", { version }), { permanent: true });
 
-	const migrationData = await getMigrationData();
+	const migrationData = {}; // await getMigrationData();
 
 	// Migrate World Actors
 	const actors = game.actors.map((a) => [a, true])
@@ -181,7 +181,7 @@ export const migrateCompendium = async function (pack) {
 	const documentName = pack.documentName;
 	if (!["Actor", "Item", "Scene"].includes(documentName)) return;
 
-	const migrationData = await getMigrationData();
+	const migrationData = {}; // await getMigrationData();
 
 	// Unlock the pack for editing
 	const wasLocked = pack.locked;
@@ -352,22 +352,6 @@ export const migrateSceneData = function (scene, migrationData) {
 };
 
 /* -------------------------------------------- */
-
-/**
- * Fetch bundled data for large-scale migrations.
- * @returns {Promise<object>}  Object mapping original system icons to their core replacements.
- */
-export const getMigrationData = async function () {
-	const data = {};
-	try {
-		const icons = await fetch("systems/armour-astir/json/icon-migration.json");
-		const spellIcons = await fetch("systems/armour-astir/json/spell-icon-migration.json");
-		data.iconMap = { ...await icons.json(), ...await spellIcons.json() };
-	} catch(err) {
-		console.warn(`Failed to retrieve icon migration data: ${err.message}`);
-	}
-	return data;
-};
 
 /* -------------------------------------------- */
 

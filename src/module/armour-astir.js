@@ -9,7 +9,6 @@ import * as dice from "./dice/_module.js";
 import * as documents from "./documents/_module.js";
 import * as migrations from "./migration.js";
 import * as utils from "./utils.js";
-import * as _init_hook from "./simple-config.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -104,18 +103,8 @@ Hooks.on("i18nInit", () => {
 	registerSettings();
 
 	// Build out character data structures.
-	const pbtaSettings = game.settings.get("pbta", "sheetConfig");
-
-	// Retrieve overridden config, if enabled.
-	if (pbtaSettings?.overridden && game.settings.get("pbta", "sheetConfigOverride")) {
-		game.pbta.sheetConfig = pbtaSettings.overridden;
-	} else if (pbtaSettings?.computed) {
-		// Otherwise, retrieve computed config.
-		game.pbta.sheetConfig = utils.convertSheetConfig(pbtaSettings.computed);
-	} else {
-		// Fallback to empty config.
-		game.pbta.sheetConfig = pbtaSettings;
-	}
+	game.pbta.sheetConfig = PBTA.sheetConfig;
+	game.pbta.tagConfigOverride = PBTA.tagConfig;
 });
 
 /**
