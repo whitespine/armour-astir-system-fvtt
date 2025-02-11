@@ -433,7 +433,6 @@ export default class PbtaActorSheet extends ActorSheet {
 	_onResourceControl(event) {
 		event.preventDefault();
 		const { action, attr, min, max } = event.currentTarget.dataset;
-		console.log(event);
 		// If there's an action and target attribute, update it.
 		if (action && attr) {
 			let new_value = Number(foundry.utils.getProperty(this.actor, attr)) || 0

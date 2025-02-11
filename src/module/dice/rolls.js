@@ -3,28 +3,9 @@ export default class RollPbtA extends Roll {
 
 	static EVALUATION_TEMPLATE = "systems/armour-astir/templates/chat/roll-dialog.html";
 
-	/**
-	 * A convenience reference for whether this RollPbtA has advantage
-	 * @type {boolean}
-	 */
-	get hasAdvantage() {
-		return this.getAdvDis() > 0;
-	}
-
-	/* -------------------------------------------- */
-
-	/**
-	 * A convenience reference for whether this RollPbtA has disadvantage
-	 * @type {boolean}
-	 */
-	get hasDisadvantage() {
-		return this.getAdvDis() < 0;
-	}
-
-	getAdvDis(type) {
+	getAdvDis() {
 		const { advDisadv } = this.options;
-		console.log("DEBUG WE ARE CONFIGURING VARIADIC ADVDISADV")
-		return advDisadv
+		return advDisadv;
 	}
 
 	/** @override */
@@ -76,16 +57,17 @@ export default class RollPbtA extends Roll {
 		const r = this.terms[0];
 
 		// Handle Advantage or Disadvantage
-		if (this.hasAdvantage) {
-			r.modifiers.push(`kh${r.number}`);
-			r.number += 1;
+		let advDisadv = this.getAdvDis();
+		if (advDisadv > 0) {
+			r.modifiers.push(`kh${r.number + advDisadv}`);
+			r.number += advDisadv;
 			r.options.advantage = true;
-			this.options.conditions.push(game.i18n.localize("PBTA.Advantage"));
-		} else if (this.hasDisadvantage) {
-			r.modifiers.push(`kl${r.number}`);
-			r.number += 1;
+			this.options.conditions.push(game.i18n.localize("PBTA.Advantage") + ` - ${advDisadv}`);
+		} else if (advDisadv < 0) {
+			r.modifiers.push(`kl${r.number - advDisadv}`);
+			r.number += -advDisadv;
 			r.options.disadvantage = true;
-			this.options.conditions.push(game.i18n.localize("PBTA.Disadvantage"));
+			this.options.conditions.push(game.i18n.localize("PBTA.Disadvantage" + ` - ${-advDisadv}`));
 		}
 
 		// Re-compile the underlying formula

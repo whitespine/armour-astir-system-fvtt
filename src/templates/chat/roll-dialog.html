@@ -38,9 +38,9 @@
         </div>
     </div>
     {{/if}}
-    {{#if hasSituationalMods}}
     <div class="cell cell--roll-resources">
         <strong>{{localize "PBTA.Dialog.ChooseSituationalModifiersTitle"}}</strong>
+        <span> TODO prompt for adv/disadv here instead </span>
         <p class="notes">{{localize "PBTA.Dialog.ChooseSituationalModifiers"}}</p>
         {{#if resources.forward.value}}
         <label class="flexrow"><input type="checkbox" name="forward" data-mod="{{resources.forward.value}}" data-content="forward" /><span>{{{localize "PBTA.Dialog.ForwardMessage" value=resources.forward.value}}}</span></label>
@@ -52,5 +52,4 @@
         <label class="flexrow"><input type="checkbox" name="hold" data-mod="{{resources.hold.value}}" data-content="hold" /><span>{{{localize "PBTA.Dialog.HoldMessage" value=resources.hold.value}}}</span></label>
         {{/if}}
     </div>
-    {{/if}}
 </form>

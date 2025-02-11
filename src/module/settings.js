@@ -69,7 +69,7 @@ export function registerSettings() {
 		scope: "world",
 		config: true,
 		type: Boolean,
-		default: false
+		default: true
 	});
 
 	game.settings.register("pbta", "hideForward", {
@@ -78,7 +78,7 @@ export function registerSettings() {
 		scope: "world",
 		config: true,
 		type: Boolean,
-		default: false
+		default: true
 	});
 
 	game.settings.register("pbta", "hideHold", {
@@ -87,7 +87,7 @@ export function registerSettings() {
 		scope: "world",
 		config: true,
 		type: Boolean,
-		default: false
+		default: true
 	});
 
 	game.settings.register("pbta", "hideOngoing", {
@@ -96,7 +96,7 @@ export function registerSettings() {
 		scope: "world",
 		config: true,
 		type: Boolean,
-		default: false
+		default: true
 	});
 
 	game.settings.register("pbta", "hideRollMode", {
