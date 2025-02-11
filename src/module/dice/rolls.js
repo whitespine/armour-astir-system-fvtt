@@ -1,7 +1,7 @@
 export default class RollPbtA extends Roll {
-	static CHAT_TEMPLATE = "systems/pbta/templates/chat/chat-move.html";
+	static CHAT_TEMPLATE = "systems/armour-astir/templates/chat/chat-move.html";
 
-	static EVALUATION_TEMPLATE = "systems/pbta/templates/chat/roll-dialog.html";
+	static EVALUATION_TEMPLATE = "systems/armour-astir/templates/chat/roll-dialog.html";
 
 	/**
 	 * A convenience reference for whether this RollPbtA has advantage

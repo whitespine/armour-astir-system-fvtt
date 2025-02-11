@@ -18,7 +18,7 @@ If you would like to have the gulp task actively watch for new changes, you can 
 Once you have the system compiled, you can symlink or copy the dist dir into your install. For example, from the root of the repo:
 
 ```bash
-ln -s ./pbta/dist $FoundryUserDataPath/systems/pbta
+ln -s ./pbta/dist $FoundryUserDataPath/systems/armour-astir
 ```
 
 Replace the `$FoundryUserDataPath` variable with the actual path to your Foundry user data directory.

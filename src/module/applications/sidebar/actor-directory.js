@@ -1,5 +1,5 @@
 export default class ActorDirectoryPbtA extends ActorDirectory {
-	static entryPartial = "systems/pbta/templates/sidebar/actor-document-partial.hbs";
+	static entryPartial = "systems/armour-astir/templates/sidebar/actor-document-partial.hbs";
 
 	static get defaultOptions() {
 		const options = super.defaultOptions;

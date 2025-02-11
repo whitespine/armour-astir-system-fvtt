@@ -358,8 +358,8 @@ export const migrateSceneData = function (scene, migrationData) {
 export const getMigrationData = async function () {
 	const data = {};
 	try {
-		const icons = await fetch("systems/pbta/json/icon-migration.json");
-		const spellIcons = await fetch("systems/pbta/json/spell-icon-migration.json");
+		const icons = await fetch("systems/armour-astir/json/icon-migration.json");
+		const spellIcons = await fetch("systems/armour-astir/json/spell-icon-migration.json");
 		data.iconMap = { ...await icons.json(), ...await spellIcons.json() };
 	} catch(err) {
 		console.warn(`Failed to retrieve icon migration data: ${err.message}`);

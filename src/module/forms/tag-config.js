@@ -4,7 +4,7 @@ export class PbtaTagConfigDialog extends FormApplication {
 			title: game.i18n.localize("PBTA.Settings.tagConfig.label"),
 			id: "pbta-tag-config",
 			classes: ["pbta", "pbta-tag-config"],
-			template: "systems/pbta/templates/dialog/tag-config.html",
+			template: "systems/armour-astir/templates/dialog/tag-config.html",
 			width: 720,
 			height: "auto",
 			resizable: true,

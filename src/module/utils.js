@@ -242,7 +242,7 @@ export function convertSheetConfig(sheetConfig) {
 				};
 			}
 		} else if (k === "statShifting") {
-			const img = "systems/pbta/assets/icons/svg/back-forth.svg";
+			const img = "systems/armour-astir/assets/icons/svg/back-forth.svg";
 			const statLabel = game.i18n.localize("PBTA.Stat.label");
 			const statsLabel = game.i18n.localize("PBTA.Stat.labelPl");
 			const label = game.i18n.format("PBTA.Stat.Shifting.label", { stat: statLabel });
@@ -978,31 +978,33 @@ export async function preloadHandlebarsTemplates() {
 	// Define template paths to load
 	const templatePaths = [
 		// Actor partials
-		"systems/pbta/templates/actors/parts/actor-attributes.hbs",
-		"systems/pbta/templates/actors/parts/actor-description.hbs",
-		"systems/pbta/templates/actors/parts/actor-header.hbs",
-		"systems/pbta/templates/actors/parts/actor-inventory.hbs",
-		"systems/pbta/templates/actors/parts/actor-movelist.hbs",
-		"systems/pbta/templates/actors/parts/actor-moves.hbs",
-		"systems/pbta/templates/actors/parts/actor-stats.hbs",
+		"systems/armour-astir/templates/actors/parts/actor-attributes.hbs",
+		"systems/armour-astir/templates/actors/parts/actor-description.hbs",
+		"systems/armour-astir/templates/actors/parts/actor-header.hbs",
+		"systems/armour-astir/templates/actors/parts/actor-inventory.hbs",
+		"systems/armour-astir/templates/actors/parts/actor-movelist.hbs",
+		"systems/armour-astir/templates/actors/parts/actor-moves.hbs",
+		"systems/armour-astir/templates/actors/parts/actor-stats.hbs",
 
 		// Item partials
-		"systems/pbta/templates/items/parts/move-description.hbs",
-		"systems/pbta/templates/items/parts/playbook-attributes.hbs",
-		"systems/pbta/templates/items/parts/playbook-choicesets.hbs",
+		"systems/armour-astir/templates/items/parts/move-description.hbs",
+		"systems/armour-astir/templates/items/parts/playbook-attributes.hbs",
+		"systems/armour-astir/templates/items/parts/playbook-choicesets.hbs",
 
 		// Chat Cards
-		"systems/pbta/templates/chat/stat-shift.hbs",
+		"systems/armour-astir/templates/chat/stat-shift.hbs",
 
 		// Dialog partials
-		"systems/pbta/templates/dialog/attributes-dialog.hbs",
-		"systems/pbta/templates/dialog/choice-dialog.hbs"
+		"systems/armour-astir/templates/dialog/attributes-dialog.hbs",
+		"systems/armour-astir/templates/dialog/choice-dialog.hbs"
 	];
+
+	console.log("HELLOOO");
 
 	const paths = {};
 	for (const path of templatePaths) {
 		paths[path.replace(".hbs", ".html")] = path;
-		paths[`pbta.${path.split("/").pop()
+		paths[`armour-astir.${path.split("/").pop()
 			.replace(".hbs", "")}`] = path;
 	}
 

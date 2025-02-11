@@ -5,7 +5,7 @@ export default class ItemPbta extends Item {
 		} else if (itemData.type === "playbook") {
 			return { img: "icons/svg/book.svg" };
 		} else if (itemData.type === "tag") {
-			return { img: "systems/pbta/assets/icons/svg/tag.svg" };
+			return { img: "systems/armour-astir/assets/icons/svg/tag.svg" };
 		}
 		return { img: this.DEFAULT_ICON };
 	}
@@ -43,7 +43,7 @@ export default class ItemPbta extends Item {
 			|| this.type === "equipment"
 			|| (this.type !== "npcMove" && !this.system.rollType)
 		) {
-			const content = await renderTemplate("systems/pbta/templates/chat/chat-move.html", {
+			const content = await renderTemplate("systems/armour-astir/templates/chat/chat-move.html", {
 				actor: this.actor,
 				tokenId: this.actor?.token?.uuid || null,
 				item: this,
@@ -268,7 +268,7 @@ export default class ItemPbta extends Item {
 					}
 					await Dialog.wait({
 						title: `${game.i18n.localize("PBTA.Attribute")}: ${label}`,
-						content: await renderTemplate("systems/pbta/templates/dialog/attributes-dialog.hbs", {
+						content: await renderTemplate("systems/armour-astir/templates/dialog/attributes-dialog.hbs", {
 							attribute,
 							choices,
 							description,
@@ -354,7 +354,7 @@ export default class ItemPbta extends Item {
 
 				await Dialog.wait({
 					title: `${game.i18n.localize("PBTA.Choice")}: ${title}`,
-					content: await renderTemplate("systems/pbta/templates/dialog/choice-dialog.hbs", { choices: validChoices, desc, parent: this.parent }),
+					content: await renderTemplate("systems/armour-astir/templates/dialog/choice-dialog.hbs", { choices: validChoices, desc, parent: this.parent }),
 					default: "ok",
 					// @todo add some warning about pending grants
 					close: () => {

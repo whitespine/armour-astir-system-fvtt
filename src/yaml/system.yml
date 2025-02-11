@@ -14,7 +14,7 @@ authors:
   - name: Whitespine
     discord: whitespine
 esmodules:
-  - module/pbta.js
+  - module/armour-astir.js
 styles:
   - styles/lib/codemirror.css
   - styles/lib/codemirror.material-palenight.css

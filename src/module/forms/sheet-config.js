@@ -16,7 +16,7 @@ export class PbtaSettingsConfigDialog extends FormApplication {
 			title: game.i18n.localize("PBTA.Settings.sheetConfig.title"),
 			id: "pbta-sheet-config",
 			classes: ["pbta", "pbta-sheet-config"],
-			template: "systems/pbta/templates/dialog/sheet-config.html",
+			template: "systems/armour-astir/templates/dialog/sheet-config.html",
 			width: 720,
 			height: 800,
 			resizable: true,

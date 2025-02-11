@@ -17,7 +17,7 @@ export default class PbtaItemSheet extends ItemSheet {
 
 	/** @override */
 	get template() {
-		const path = "systems/pbta/templates/items";
+		const path = "systems/armour-astir/templates/items";
 		return `${path}/${this.item.type}-sheet.html`;
 	}
 

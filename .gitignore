@@ -7,6 +7,6 @@ jsconfig.json
 # Node Modules
 node_modules/
 dist/
-/pbta/
-/pbta.zip
+/armour-astir/
+/armour-astir.zip
 foundry

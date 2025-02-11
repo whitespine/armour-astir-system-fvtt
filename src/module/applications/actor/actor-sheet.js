@@ -46,7 +46,7 @@ export default class PbtaActorSheet extends ActorSheet {
 
 	/** @override */
 	get template() {
-		const path = "systems/pbta/templates/actors";
+		const path = "systems/armour-astir/templates/actors";
 		if (this.actor.limited) return `${path}/limited-sheet.html`;
 		return `${path}/actor-sheet.html`;
 	}
@@ -648,7 +648,7 @@ export default class PbtaActorSheet extends ActorSheet {
 		this._statShifting = {};
 		this.render(false);
 
-		const content = await renderTemplate("systems/pbta/templates/chat/stat-shift.hbs", {
+		const content = await renderTemplate("systems/armour-astir/templates/chat/stat-shift.hbs", {
 			actor: this.actor,
 			labels,
 			up: up ? this.actor.system.stats[up] : "",
