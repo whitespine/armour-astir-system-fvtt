@@ -262,7 +262,6 @@ export default class RollPbtA extends Roll {
 		let result = await super.evaluate(options);
 
 		// Fixup confidence / desperation
-		console.log([...this.terms[0].results]);
 		if(this.options.rollMode == "conf") {
 			// First fix terms
 			for(let result of this.terms[0].results) {

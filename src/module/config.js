@@ -55,6 +55,7 @@ PBTA.tagConfig = {
 // Replace the game.pbta.sheetConfig with your own version.
 PBTA.sheetConfig = {
   "rollFormula": "2d6",
+  "statClock": true,
   "rollResults": {
     "failure": {
       "start": null,
@@ -104,13 +105,14 @@ PBTA.sheetConfig = {
           "value": 0
         }
       },
-      "attrTop": {
-        "harm": {
-          "label": "Harm",
-          "description": null,
+      "attributes": {
+        "spotlight": {
+          "label": "Spotlight",
+          "description": "Spend to advance, or to dodge consequences",
+		  "position": "top",
           "customLabel": false,
           "userLabel": false,
-          "type": "Clock",
+          "type": "Xp",
           "value": 0,
           "max": 6,
           "steps": [
@@ -118,71 +120,28 @@ PBTA.sheetConfig = {
             false,
             false,
             false,
-            false,
             false
           ]
         },
-        "armor": {
-          "label": "Armor",
-          "description": null,
-          "customLabel": false,
-          "userLabel": false,
-          "type": "Number",
-          "value": 0
-        },
-        "hold": {
-          "label": "Hold",
-          "description": null,
-          "customLabel": false,
-          "userLabel": false,
-          "type": "Resource",
-          "value": 0,
-          "max": 0
-        },
-        "xp": {
-          "label": "Xp",
-          "description": null,
-          "customLabel": false,
-          "userLabel": false,
-          "type": "Xp",
-          "value": 0,
-          "max": 5,
-          "steps": [
-            false,
-            false,
-            false,
-            false,
-            false
-          ]
-        }
-      },
-      "attrLeft": {
         "harmConditions": {
-          "label": "Harm Conditions",
-          "description": null,
+          "label": "Danger",
+		  "position": "left",
+          "description": "Checkmark for peril. At three, you are defenceless",
           "customLabel": false,
           "userLabel": false,
           "type": "ListMany",
           "condition": false,
           "options": {
             "0": {
-              "label": "Stabilized",
+              "label": "[Text]",
               "value": false
             },
             "1": {
-              "label": "Shattered (-1COOL)",
+              "label": "[Text]",
               "value": false
             },
             "2": {
-              "label": "Crippled (-1HARD)",
-              "value": false
-            },
-            "3": {
-              "label": "Disfigured (-1HOT)",
-              "value": false
-            },
-            "4": {
-              "label": "Broken (-1SHARP)",
+              "label": "[Text]",
               "value": false
             }
           }
