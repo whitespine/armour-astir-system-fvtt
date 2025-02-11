@@ -59,15 +59,21 @@ export default class RollPbtA extends Roll {
 		// Handle Advantage or Disadvantage
 		let advDisadv = this.getAdvDis();
 		if (advDisadv > 0) {
-			r.modifiers.push(`kh${r.number + advDisadv}`);
+			r.modifiers.push(`kh2`);
 			r.number += advDisadv;
 			r.options.advantage = true;
-			this.options.conditions.push(game.i18n.localize("PBTA.Advantage") + ` - ${advDisadv}`);
+			this.options.conditions.push(game.i18n.localize("PBTA.Advantage") + `: ${advDisadv}`);
 		} else if (advDisadv < 0) {
-			r.modifiers.push(`kl${r.number - advDisadv}`);
+			r.modifiers.push(`kl2`);
 			r.number += -advDisadv;
 			r.options.disadvantage = true;
-			this.options.conditions.push(game.i18n.localize("PBTA.Disadvantage" + ` - ${-advDisadv}`));
+			this.options.conditions.push(game.i18n.localize("PBTA.Disadvantage") + `: ${-advDisadv}`);
+		}
+
+		if (this.options.rollMode == "conf") {
+			this.options.conditions.push(game.i18n.localize("PBTA.Confidence"));
+		} else if(this.options.rollMode == "desp") {
+			this.options.conditions.push(game.i18n.localize("PBTA.Desperation"));
 		}
 
 		// Re-compile the underlying formula
@@ -249,5 +255,59 @@ export default class RollPbtA extends Roll {
 		// Apply advantage or disadvantage
 		this.configureModifiers();
 		return this;
+	}
+
+	// Override for confidence
+	async evaluate(options={}) {
+		let result = await super.evaluate(options);
+
+		// Fixup confidence / desperation
+		console.log([...this.terms[0].results]);
+		if(this.options.rollMode == "conf") {
+			// First fix terms
+			for(let result of this.terms[0].results) {
+				if (result.result == 1) {
+					result.rerolled = true; // close enough
+					this.terms[0].results.push({
+						result: 6,
+					});
+				}
+			}
+		} else if(this.options.rollMode == "desp") {
+			// First fix terms
+			for(let result of this.terms[0].results) {
+				if (result.result == 6) {
+					result.rerolled = true;
+					this.terms[0].results.push({
+						result: 1,
+					});
+				}
+			}
+		}
+
+		// Then re-compute active/inactive
+		if(this.getAdvDis) {
+			let firstResults = [...this.terms[0].results];
+			firstResults.forEach(result => {
+				result.active = false
+				result.discarded = true;
+			}); // Set all inactive
+			firstResults = firstResults.filter(r => !r.rerolled);
+			if(this.getAdvDis() > 0) {
+				firstResults.sort((a, b) => b.result - a.result);
+			} else if(this.getAdvDis() < 0) {
+				firstResults.sort((a, b) => a.result - b.result);
+			}
+			[firstResults[0], firstResults[1]].forEach(r => {
+				r.active = true;
+				delete r["discarded"];
+			});
+			this.terms[0]._total = firstResults[0].result + firstResults[1].result;
+		}
+
+		// Fix total
+		this._total = Roll.safeEval(this.result);
+
+		return result;
 	}
 }
