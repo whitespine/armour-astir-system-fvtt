@@ -139,7 +139,6 @@ export default class PbtaActorSheet extends ActorSheet {
 					return { name: p.name, uuid: p.uuid };
 				});
 
-			context.statToggle = sheetConfig?.statToggle ?? false;
 			context.statToken = sheetConfig?.statToken ?? false;
 			context.statClock = sheetConfig?.statClock ?? false;
 			context.statSettings = sheetConfig.actorTypes[this.actor.baseType]?.stats ?? {};

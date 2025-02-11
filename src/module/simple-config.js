@@ -41,24 +41,28 @@ Hooks.once('pbtaSheetConfig', () => {
     "actorTypes": {
       "character": {
         "stats": {
-          "cool": {
-            "label": "Cool",
+          "defy": {
+            "label": "Defy",
             "value": 0
           },
-          "hard": {
-            "label": "Hard",
+          "sense": {
+            "label": "Sense",
             "value": 0
           },
-          "hot": {
-            "label": "Hot",
+          "clash": {
+            "label": "Clash",
             "value": 0
           },
-          "sharp": {
-            "label": "Sharp",
+          "talk": {
+            "label": "Talk",
             "value": 0
           },
-          "weird": {
-            "label": "Weird",
+          "know": {
+            "label": "Know",
+            "value": 0
+          },
+          "crew": {
+            "label": "Crew",
             "value": 0
           }
         },

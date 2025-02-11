@@ -23,7 +23,6 @@ PBTA.sheetConfigs = [
 	"skipAttributeGrant",
 	"statClock",
 	"statShifting",
-	"statToggle",
 	"statToken"
 ];
 

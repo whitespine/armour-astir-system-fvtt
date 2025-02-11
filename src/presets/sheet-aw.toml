@@ -1,11 +1,6 @@
 # Configure Rolls
 rollFormula = "2d6"
 
-# Configure stat toggle label and formula modifier.
-[statToggle]
-  label = "Highlight"
-  modifier = "-1"
-
 # Define roll result ranges.
 [rollResults]
   [rollResults.failure]

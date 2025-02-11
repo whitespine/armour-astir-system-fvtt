@@ -27,7 +27,7 @@ export default class RollPbtA extends Roll {
 		if (typeof statOption === "object" && statOption.key) stat = statOption.key;
 		else if (typeof statOption === "string") stat = statOption;
 		if (this.data.stats[stat]?.toggle) {
-			const { modifier } = game.pbta.sheetConfig?.statToggle || {};
+			const { modifier } = /* game.pbta.sheetConfig?.statToggle || */ {};
 			if (modifier === type) return true;
 		}
 

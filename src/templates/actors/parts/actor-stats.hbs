@@ -14,17 +14,6 @@
 				{{ stat.label }}
 			</label>
 			{{#if (and (eq key "token") ../statToken)}}
-			<span class="token-modif" data-action="decrease" data-attr="stats.{{key}}.value">-</span>
-			<input
-				class="stat-value {{#if (eq stat.value ../statToken.max)}}max{{/if}}"
-				type="text"
-				name="system.stats.{{key}}.value"
-				value="{{stat.value}}"
-				data-dtype="Number"
-				min={{statToggle.min}}
-				max="{{statToggle.max}}"
-				disabled />
-			<span class="token-modif" data-action="increase" data-attr="stats.{{key}}.value">+</span>
 			{{else}}
 				{{#if ../statToggle}}
 				<label class="stat-toggle checkbox"><input type="checkbox" name="system.stats.{{key}}.toggle" {{checked stat.toggle}}/>

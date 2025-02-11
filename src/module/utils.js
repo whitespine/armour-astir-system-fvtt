@@ -211,20 +211,6 @@ export function convertSheetConfig(sheetConfig) {
 			let rollFormula = v.trim();
 			let validRoll = Roll.validate(rollFormula);
 			newConfig.rollFormula = validRoll ? rollFormula : "";
-		} else if (k === "statToggle") {
-			if (!v) {
-				newConfig.statToggle = false;
-			} else if (typeof v === "object" && v.label) {
-				newConfig.statToggle = {
-					label: v.label,
-					modifier: v.modifier ?? 0
-				};
-			} else {
-				newConfig.statToggle = {
-					label: v,
-					modifier: 0
-				};
-			}
 		} else if (k === "statToken") {
 			if (!v) {
 				newConfig.statToken = false;
