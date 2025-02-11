@@ -64,6 +64,10 @@ Hooks.once('pbtaSheetConfig', () => {
           "crew": {
             "label": "Crew",
             "value": 0
+          },
+          "channel": {
+            "label": "Channel",
+            "value": 0
           }
         },
         "attrTop": {
@@ -187,12 +191,8 @@ Hooks.once('pbtaSheetConfig', () => {
             "label": "Basic Moves",
             "moves": []
           },
-          "peripheral": {
-            "label": "Peripheral Moves",
-            "moves": []
-          },
-          "class": {
-            "label": "Class Moves",
+          "playbook": {
+            "label": "Playbook Moves",
             "moves": []
           }
         },
