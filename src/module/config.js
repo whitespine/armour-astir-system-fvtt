@@ -30,6 +30,6 @@ PBTA.playbooks = [];
 
 PBTA.rollModes = {
 	def: "PBTA.Normal",
-	adv: "PBTA.Advantage",
-	dis: "PBTA.Disadvantage"
+	conf: "PBTA.Confidence",
+	desp: "PBTA.Desperation"
 };

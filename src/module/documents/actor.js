@@ -164,6 +164,7 @@ export default class ActorPbta extends Actor {
 		const options = {};
 		if (!game.settings.get("pbta", "hideRollMode")) {
 			options.rollMode = this.flags?.pbta?.rollMode;
+			options.advDisadv = this.flags?.pbta?.advDisadv;
 		}
 
 		// Handle rolls coming directly from the ability score.

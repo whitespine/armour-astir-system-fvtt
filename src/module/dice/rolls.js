@@ -8,7 +8,7 @@ export default class RollPbtA extends Roll {
 	 * @type {boolean}
 	 */
 	get hasAdvantage() {
-		return this.checkAdvDis("adv");
+		return this.getAdvDis() > 0;
 	}
 
 	/* -------------------------------------------- */
@@ -18,20 +18,13 @@ export default class RollPbtA extends Roll {
 	 * @type {boolean}
 	 */
 	get hasDisadvantage() {
-		return this.checkAdvDis("dis");
+		return this.getAdvDis() < 0;
 	}
 
-	checkAdvDis(type) {
-		const { stat: statOption, rollMode, rollType } = this.options;
-		let stat = rollType;
-		if (typeof statOption === "object" && statOption.key) stat = statOption.key;
-		else if (typeof statOption === "string") stat = statOption;
-		if (this.data.stats[stat]?.toggle) {
-			const { modifier } = /* game.pbta.sheetConfig?.statToggle || */ {};
-			if (modifier === type) return true;
-		}
-
-		return rollMode === type;
+	getAdvDis(type) {
+		const { advDisadv } = this.options;
+		console.log("DEBUG WE ARE CONFIGURING VARIADIC ADVDISADV")
+		return advDisadv
 	}
 
 	/** @override */

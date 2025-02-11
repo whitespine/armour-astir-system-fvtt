@@ -95,7 +95,7 @@ export default class PbtaActorSheet extends ActorSheet {
 			isNPC: this.actor.baseType === "npc",
 			config: CONFIG.PBTA,
 			flags: foundry.utils.mergeObject({
-				pbta: { rollMode: "def" } }, this.actor?.flags ?? {}
+				pbta: { rollMode: "def", advDisadv: 0 } }, this.actor?.flags ?? {}
 			),
 			enrichmentOptions: {
 				secrets: this.actor.isOwner,
@@ -432,15 +432,18 @@ export default class PbtaActorSheet extends ActorSheet {
 
 	_onResourceControl(event) {
 		event.preventDefault();
-		const { action, attr } = event.currentTarget.dataset;
+		const { action, attr, min, max } = event.currentTarget.dataset;
+		console.log(event);
 		// If there's an action and target attribute, update it.
 		if (action && attr) {
-			const system = {
-				[attr]: Number(foundry.utils.getProperty(this.actor.system, attr))
-			};
+			let new_value = Number(foundry.utils.getProperty(this.actor, attr)) || 0
 			if (action === "decrease" || action === "increase") {
-				system[attr] += (action === "decrease" ? -1 : 1);
-				this.actor.update({ system });
+				new_value += (action === "decrease" ? -1 : 1);
+				if (min != null) new_value = Math.max(min, new_value);
+				if (max != null) new_value = Math.min(max, new_value);
+				this.actor.update({
+					[attr]: new_value
+				});
 			}
 		}
 	}
@@ -583,7 +586,6 @@ export default class PbtaActorSheet extends ActorSheet {
 	_onStatTokenClick(event) {
 		event.preventDefault();
 		const { action, attr } = event.currentTarget.dataset;
-		const { min, max } = game.pbta.sheetConfig.statToken;
 		if (action && attr) {
 			const system = {
 				[attr]: Number(foundry.utils.getProperty(this.actor.system, attr))

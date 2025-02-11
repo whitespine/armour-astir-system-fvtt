@@ -21,9 +21,9 @@
 			<div class="cell cell--forward">
 				<label class="cell__title">{{localize "PBTA.Forward"}}</label>
 				<div class="cell__wrapper">
-					<button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="resources.forward.value" >-</button>
+					<button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="system.resources.forward.value" >-</button>
 					<input type="number" name="system.resources.forward.value" value="{{system.resources.forward.value}}" data-dtype="Number"/>
-					<button type="button" class="resource-control resource-increase" data-action="increase" data-attr="resources.forward.value">+</button>
+					<button type="button" class="resource-control resource-increase" data-action="increase" data-attr="system.resources.forward.value">+</button>
 				</div>
 			</div>
 			{{/if}}
@@ -32,9 +32,9 @@
 			<div class="cell cell--ongoing">
 				<label class="cell__title">{{localize "PBTA.Ongoing"}}</label>
 				<div class="cell__wrapper">
-					<button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="resources.ongoing.value">-</button>
+					<button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="system.resources.ongoing.value">-</button>
 					<input type="number" name="system.resources.ongoing.value" value="{{system.resources.ongoing.value}}" data-dtype="Number"/>
-					<button type="button" class="resource-control resource-increase" data-action="increase" data-attr="resources.ongoing.value">+</button>
+					<button type="button" class="resource-control resource-increase" data-action="increase" data-attr="system.resources.ongoing.value">+</button>
 				</div>
 			</div>
 			{{/if}}
@@ -43,9 +43,9 @@
 			<div class="cell cell--hold">
 				<label class="cell__title">{{localize "PBTA.Hold"}}</label>
 				<div class="cell__wrapper">
-					<button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="resources.hold.value">-</button>
+					<button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="system.resources.hold.value">-</button>
 					<input type="number" name="system.resources.hold.value" value="{{system.resources.hold.value}}" data-dtype="Number"/>
-					<button type="button" class="resource-control resource-increase" data-action="increase" data-attr="resources.hold.value">+</button>
+					<button type="button" class="resource-control resource-increase" data-action="increase" data-attr="system.resources.hold.value">+</button>
 				</div>
 			</div>
 			{{/if}}
@@ -54,6 +54,12 @@
 			<div class="cell cell--roll-mode">
 				<label class="cell__title">{{localize "PBTA.RollMode"}}</label>
 				{{radioBoxes 'flags.pbta.rollMode' config.rollModes checked=flags.pbta.rollMode localize=true}}
+			</div>
+			<div class="cell cell--roll-mode">
+				<label class="cell__title">{{localize "PBTA.RollAdvDisadv"}}</label>
+				<button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="flags.pbta.advDisadv" data-min="-2">-</button>
+				<input type="number" name="flags.pbta.advDisadv" value="{{flags.pbta.advDisadv}}" data-dtype="Number"/>
+				<button type="button" class="resource-control resource-increase" data-action="increase" data-attr="flags.pbta.advDisadv" data-max="2">+</button>
 			</div>
 			{{/if}}
 		</section>
