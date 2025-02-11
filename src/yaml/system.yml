@@ -1,6 +1,6 @@
-name: pbta
-id: pbta
-title: Powered by the Apocalypse
+name: armour-astir
+id: armour-astir
+title: Armour Astir
 description: Run games for any PbtA system in Foundry VTT!
 version: "1.1.13"
 compatibility:
@@ -11,6 +11,8 @@ authors:
   - name: Asacolips
   - name: Matheus Clemente
     discord: mclemente
+  - name: Whitespine
+    discord: whitespine
 esmodules:
   - module/pbta.js
 styles:
@@ -44,10 +46,8 @@ grid:
   distance: 5
   units: ft
 socket: true
-url: https://github.com/asacolips-projects/pbta
+url: https://github.com/whitespine/armour-astir-system-fvtt
 manifest: https://asacolips-artifacts.s3.amazonaws.com/pbta/latest/system.json
 download: https://asacolips-artifacts.s3.amazonaws.com/pbta/1.0.0/pbta.zip
 changelog: https://github.com/asacolips-projects/pbta/blob/main/CHANGELOG.md
 bugs: https://github.com/asacolips-projects/pbta/issues
-flags:
-  needsMigrationVersion: "1.0.23"
