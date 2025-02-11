@@ -9,6 +9,7 @@ import * as dice from "./dice/_module.js";
 import * as documents from "./documents/_module.js";
 import * as migrations from "./migration.js";
 import * as utils from "./utils.js";
+import * as _init_hook from "./simple-config.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */

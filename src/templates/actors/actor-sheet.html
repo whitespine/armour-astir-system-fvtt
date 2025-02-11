@@ -3,7 +3,7 @@
 	<div class="sheet-wrapper">
 
 		{{!-- Sheet Header --}}
-		{{> "pbta.actor-header" }}
+		{{> "armour-astir.actor-header" }}
 
 		<section class="sheet-top flexcol">
 			{{#if isCharacter}}
@@ -13,13 +13,13 @@
 					<img class="profile-img" src="{{actor.img}}" data-edit="img" />
 				</div>
 
-				{{> "pbta.actor-stats" }}
+				{{> "armour-astir.actor-stats" }}
 
 			</section>
 			{{/if}}
 
 			<section class="sheet-attributes-top">
-				{{~> "pbta.actor-attributes" attrs=system.attrTop cssClass="cell--attributes-top flexrow" owner=owner editable=editable ~}}
+				{{~> "armour-astir.actor-attributes" attrs=system.attrTop cssClass="cell--attributes-top flexrow" owner=owner editable=editable ~}}
 			</section>
 		</section>
 
@@ -28,7 +28,7 @@
 			{{#if (objLen system.attrLeft)}}
 			<section>
 				<div class="cell cell--aesthetics">
-					{{> "pbta.actor-attributes" attrs=system.attrLeft cssClass="cell--attributes-left" owner=owner editable=editable}}
+					{{> "armour-astir.actor-attributes" attrs=system.attrLeft cssClass="cell--attributes-left" owner=owner editable=editable}}
 				</div>
 			</section>
 			{{/if}}
@@ -45,13 +45,13 @@
 				{{!-- Sheet Body --}}
 				<section class="sheet-body">
 					{{!-- Main Tab --}}
-					{{> "pbta.actor-description" }}
+					{{> "armour-astir.actor-description" }}
 
 					{{!-- Moves Tab --}}
-					{{> "pbta.actor-movelist" }}
+					{{> "armour-astir.actor-movelist" }}
 
 					{{!-- Owned Equipment Tab --}}
-					{{> "pbta.actor-inventory" }}
+					{{> "armour-astir.actor-inventory" }}
 				</section>
 			</section>
 		</section>

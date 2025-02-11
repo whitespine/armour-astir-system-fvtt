@@ -119,6 +119,7 @@ export function migrateActorData(actor, migrationData, flags={}) {
 	if (actor.system.advancements === undefined) updateData["system.advancements"] = 0;
 	const baseType = actor.baseType;
 	const actorConfig = game.pbta.sheetConfig.actorTypes[baseType];
+	/*
 	if (actorConfig) {
 		const attrLeftSize = Object.values(actorConfig.attributes)
 			.filter((data) => data.position === "left").length;
@@ -137,6 +138,7 @@ export function migrateActorData(actor, migrationData, flags={}) {
 			}
 		}
 	}
+	*/
 
 	if (!actor.items) return updateData;
 	const items = actor.items.reduce((arr, i) => {
