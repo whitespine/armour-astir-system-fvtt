@@ -34,9 +34,15 @@ export function createActorResources() {
  */
 export function createItemResources() {
 	return {
-		uses: new foundry.data.fields.NumberField({
-			initial: 0,
-			integer: true
+		uses: new foundry.data.fields.SchemaField({
+			value: new foundry.data.fields.NumberField({
+				initial: 0,
+				integer: true
+			}),
+			max: new foundry.data.fields.NumberField({
+				initial: 0,
+				integer: true
+			}),
 		})
 	};
 }

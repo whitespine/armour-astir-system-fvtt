@@ -25,8 +25,8 @@
 </h4>
 {{#if item.system.rollType}}
   <div class="item-meta tags">
-    {{#if (not sheetSettings.hideUses)}}
-      <span class="tag tag--uses">{{localize "PBTA.Uses"}}: {{item.system.uses}}</span>
+    {{#if (and (not sheetSettings.hideUses) item.system.uses.max)}}
+      <span class="tag tag--uses">{{localize "PBTA.Uses"}}: {{item.system.uses.value}} / {{item.system.uses.max}}</span>
     {{/if}}
     {{#if (eq item.system.rollType 'formula')}}
       <span class="tag tag--formula">{{item.system.rollFormula}}</span>

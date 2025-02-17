@@ -73,8 +73,8 @@ export default class ActorPbta extends Actor {
 
 	async clearAdv(updates) {
 		if (!game.settings.get("pbta", "advForward")) return;
-		const rollMode = this.getFlag("pbta", "rollMode") ?? "def";
-		if (rollMode !== "def") updates["flags.pbta.rollMode"] = "def";
+		updates["flags.pbta.rollMode"] = "def";
+		updates["flags.pbta.advDisadv"] = 0;
 	}
 
 	async clearForward(updates, roll) {

@@ -678,11 +678,18 @@ export default class PbtaActorSheet extends ActorSheet {
 		const item = this.actor.items.get(itemId);
 
 		if (item) {
-			const originalAmount = Number(foundry.utils.getProperty(item.toObject(), property)) || 0;
-			if (originalAmount + delta >= 0) {
-				await item.update({ [property]: originalAmount + delta });
-				this.render();
+			let value;
+			let max;
+			if(property == "system.uses") {
+				value = Number(foundry.utils.getProperty(item, `${property}.value`)) || 0;
+				max = Number(foundry.utils.getProperty(item, `${property}.max`)) || 99;
+			} else {
+				value = Number(foundry.utils.getProperty(item, property)) || 0;
+				max = 99;
 			}
+			value += delta;
+			await item.update({ [propertyPath]: Math.min(Math.max(value, 0), max) });
+			this.render();
 		}
 	}
 

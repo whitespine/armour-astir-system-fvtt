@@ -109,7 +109,7 @@ PBTA.sheetConfig = {
         "spotlight": {
           "label": "Spotlight",
           "description": "Spend to advance, or to dodge consequences",
-		  "position": "top",
+          "position": "left",
           "customLabel": false,
           "userLabel": false,
           "type": "Xp",
@@ -125,7 +125,7 @@ PBTA.sheetConfig = {
         },
         "harmConditions": {
           "label": "Danger",
-		  "position": "left",
+          "position": "left",
           "description": "Checkmark for peril. At three, you are defenceless",
           "customLabel": false,
           "userLabel": false,
