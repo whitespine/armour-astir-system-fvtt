@@ -96,12 +96,12 @@ PBTA.sheetConfig = {
           "label": "Know",
           "value": 0
         },
-        "crew": {
-          "label": "Crew",
-          "value": 0
-        },
         "channel": {
           "label": "Channel",
+          "value": 0
+        },
+        "special": {
+          "label": "Spec",
           "value": 0
         }
       },
