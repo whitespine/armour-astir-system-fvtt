@@ -285,7 +285,7 @@ export default class RollPbtA extends Roll {
 		}
 
 		// Then re-compute active/inactive
-		if(this.getAdvDis) {
+		if(this.terms[0]?.results && this.getAdvDis()) {
 			let firstResults = [...this.terms[0].results];
 			firstResults.forEach(result => {
 				result.active = false
