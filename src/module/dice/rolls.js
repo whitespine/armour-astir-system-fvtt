@@ -5,7 +5,7 @@ export default class RollPbtA extends Roll {
 
 	getAdvDis() {
 		const { advDisadv } = this.options;
-		return advDisadv;
+		return advDisadv || 0;
 	}
 
 	/** @override */
@@ -120,21 +120,30 @@ export default class RollPbtA extends Roll {
 				|| resources.hold.value > 0
 			: false;
 
+			/*
 		const needsDialog =
 			["ask", "prompt"].includes(rollType)
 			|| hasSituationalMods
 			|| conditionGroups.length > 0
 			|| (templateData.isStatToken && templateData.numOfToken);
+			*/
+		const needsDialog = true;
 
 		if (needsDialog) {
 			templateData = foundry.utils.mergeObject(templateData, {
 				conditionGroups,
 				hasPrompt: rollType === "prompt",
 				hasSituationalMods,
-				resources
+				resources,
+				advDisadv: 0,
+				rollMode: "def",
+				config: CONFIG.PBTA 
 			});
 
-			const content = await renderTemplate(template ?? this.constructor.EVALUATION_TEMPLATE, templateData);
+			// Render and apply listeners to our content
+			let content = await renderTemplate(template ?? this.constructor.EVALUATION_TEMPLATE, templateData);
+			console.log(content);
+
 			return new Promise((resolve) => {
 				title = title ? game.i18n.format("PBTA.RollLabel", { label: title }) : game.i18n.localize("PBTA.RollMove");
 				let buttons = {
@@ -205,51 +214,14 @@ export default class RollPbtA extends Roll {
 		}
 
 		// Customize the modifier
+		if (form?.advDisadv?.value) {
+			this.options.advDisadv = Number.parseInt(form.advDisadv.value || 0);
+		}
+		if (form?.rollMode?.value) {
+			this.options.rollMode = form.rollMode.value;
+		}
 		if (form?.prompt?.value) {
 			addToFormula(`${form.prompt.value}`);
-		}
-
-		if (form?.forward && form?.forward.checked) {
-			const fRoll = new Roll(`${form.forward.dataset.mod}`, this.data);
-			if (!(fRoll.terms[0] instanceof foundry.dice.terms.OperatorTerm)) {
-				this.terms.push(new foundry.dice.terms.OperatorTerm({ operator: "+" }));
-			}
-			this.terms = this.terms.concat(fRoll.terms);
-			this.options.conditions.push(`${game.i18n.localize("PBTA.Forward")} (${form.forward.dataset.mod >= 0 ? "+" : ""} ${form.forward.dataset.mod})`);
-			this.options.conditionsConsumed.push("forward");
-		}
-
-		if (form?.ongoing && form?.ongoing.checked) {
-			const oRoll = new Roll(`${form.ongoing.dataset.mod}`, this.data);
-			if (!(oRoll.terms[0] instanceof foundry.dice.terms.OperatorTerm)) {
-				this.terms.push(new foundry.dice.terms.OperatorTerm({ operator: "+" }));
-			}
-			this.terms = this.terms.concat(oRoll.terms);
-			this.options.conditions.push(`${game.i18n.localize("PBTA.Ongoing")} (${form.ongoing.dataset.mod >= 0 ? "+" : ""} ${form.ongoing.dataset.mod})`);
-		}
-
-		if (form?.hold && form?.hold.checked) {
-			const oRoll = new Roll(`${form.hold.dataset.mod}`, this.data);
-			if (!(oRoll.terms[0] instanceof foundry.dice.terms.OperatorTerm)) {
-				this.terms.push(new foundry.dice.terms.OperatorTerm({ operator: "+" }));
-			}
-			this.terms = this.terms.concat(oRoll.terms);
-			this.options.conditions.push(`${game.i18n.localize("PBTA.Hold")} (${form.hold.dataset.mod >= 0 ? "+" : ""} ${form.hold.dataset.mod})`);
-			this.options.conditionsConsumed.push("hold");
-		}
-
-		if (form?.condition) {
-			let conditions = [];
-			if (form.condition.length) {
-				conditions = Array.from(form.condition).filter((c) => c.checked);
-			} else if (form.condition.checked) {
-				conditions.push(form.condition);
-			}
-			for (let condition of conditions) {
-				let { mod, content } = condition.dataset;
-				addToFormula(`${mod}`);
-				this.options.conditions.push(content);
-			}
 		}
 
 		// Apply advantage or disadvantage
@@ -310,3 +282,19 @@ export default class RollPbtA extends Roll {
 		return result;
 	}
 }
+
+// Hackjob
+Hooks.on("renderDialog", (_dialog, html, data) => {
+	$(html).find(".resource-control").on("click", (evt) => {
+		evt.preventDefault();
+		evt.stopPropagation();
+		let input = $(evt.target).siblings("input")[0];
+		let value = Number.parseInt(input.value || "0") || 0;
+		let action = evt.target.dataset.action;
+		if(action == "decrease") {
+			input.value = Math.max(-2, value - 1);
+		} else if(action == "increase") {
+			input.value = Math.min(2, value + 1);
+		}
+	});
+});

@@ -50,18 +50,6 @@
 			</div>
 			{{/if}}
 
-			{{#if (not sheetSettings.hideRollMode)}}
-			<div class="cell cell--roll-mode">
-				<label class="cell__title">{{localize "PBTA.RollMode"}}</label>
-				{{radioBoxes 'flags.pbta.rollMode' config.rollModes checked=flags.pbta.rollMode localize=true}}
-			</div>
-			<div class="cell cell--roll-mode">
-				<label class="cell__title">{{localize "PBTA.RollAdvDisadv"}}</label>
-				<button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="flags.pbta.advDisadv" data-min="-2">-</button>
-				<input type="number" name="flags.pbta.advDisadv" value="{{flags.pbta.advDisadv}}" data-dtype="Number"/>
-				<button type="button" class="resource-control resource-increase" data-action="increase" data-attr="flags.pbta.advDisadv" data-max="2">+</button>
-			</div>
-			{{/if}}
 		</section>
 		{{/if}}
 

@@ -95,7 +95,7 @@ export default class PbtaActorSheet extends ActorSheet {
 			isNPC: this.actor.baseType === "npc",
 			config: CONFIG.PBTA,
 			flags: foundry.utils.mergeObject({
-				pbta: { rollMode: "def", advDisadv: 0 } }, this.actor?.flags ?? {}
+				pbta: { } }, this.actor?.flags ?? {}
 			),
 			enrichmentOptions: {
 				secrets: this.actor.isOwner,

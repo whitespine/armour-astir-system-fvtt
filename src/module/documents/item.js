@@ -91,7 +91,6 @@ export default class ItemPbta extends Item {
 				}
 			});
 			const updates = {};
-			await this.actor?.clearAdv(updates);
 			await this.actor?.clearForward(updates, r);
 			await this.actor?.decrementHold(updates, r);
 			if (Object.keys(updates).length) await this.actor?.update(updates);

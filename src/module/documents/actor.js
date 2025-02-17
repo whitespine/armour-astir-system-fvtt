@@ -71,11 +71,6 @@ export default class ActorPbta extends Actor {
 		return game.pbta.sheetConfig.rollFormula ?? defaultFormula;
 	}
 
-	async clearAdv(updates) {
-		if (!game.settings.get("pbta", "advForward")) return;
-		updates["flags.pbta.rollMode"] = "def";
-		updates["flags.pbta.advDisadv"] = 0;
-	}
 
 	async clearForward(updates, roll) {
 		if (!roll.options.conditionsConsumed.includes("forward")) return;
@@ -162,10 +157,6 @@ export default class ActorPbta extends Actor {
 		const { label, roll, showResults } = event.currentTarget.dataset;
 		const itemId = event.currentTarget.closest(".item")?.dataset.itemId;
 		const options = {};
-		if (!game.settings.get("pbta", "hideRollMode")) {
-			options.rollMode = this.flags?.pbta?.rollMode;
-			options.advDisadv = this.flags?.pbta?.advDisadv;
-		}
 
 		// Handle rolls coming directly from the ability score.
 		if (event.currentTarget.classList.contains("stat-rollable")) {
@@ -202,7 +193,6 @@ export default class ActorPbta extends Actor {
 			rollMode: game.settings.get("core", "rollMode")
 		});
 		const updates = {};
-		await this.clearAdv(updates);
 		await this.clearForward(updates, r);
 		await this.decrementHold(updates, r);
 		if (Object.keys(updates).length) await this.update(updates);
@@ -230,7 +220,6 @@ export default class ActorPbta extends Actor {
 			speaker: ChatMessage.getSpeaker({ actor: this }),
 			rollMode: game.settings.get("core", "rollMode")
 		});
-		await this.clearAdv(updates);
 		await this.clearForward(updates, roll);
 		await this.decrementHold(updates, roll);
 		if (Object.keys(updates).length) await this.update(updates);
