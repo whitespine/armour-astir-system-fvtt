@@ -143,6 +143,10 @@ PBTA.sheetConfig = {
             "2": {
               "label": "[Text]",
               "value": false
+            },
+            "3": {
+              "label": "Overheating",
+              "value": false
             }
           }
         },

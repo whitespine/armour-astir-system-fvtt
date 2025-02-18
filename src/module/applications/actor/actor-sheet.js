@@ -681,6 +681,7 @@ export default class PbtaActorSheet extends ActorSheet {
 			let value;
 			let max;
 			if(property == "system.uses") {
+				property += ".value";
 				value = Number(foundry.utils.getProperty(item, `${property}.value`)) || 0;
 				max = Number(foundry.utils.getProperty(item, `${property}.max`)) || 99;
 			} else {
@@ -688,7 +689,7 @@ export default class PbtaActorSheet extends ActorSheet {
 				max = 99;
 			}
 			value += delta;
-			await item.update({ [propertyPath]: Math.min(Math.max(value, 0), max) });
+			await item.update({ [property]: Math.min(Math.max(value, 0), max) });
 			this.render();
 		}
 	}
