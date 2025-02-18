@@ -408,7 +408,8 @@ export default class PbtaActorSheet extends ActorSheet {
 		html.find(".item-label").on("click", this._showItemDetails.bind(this));
 
 		// Attributes.
-		html.find(".attr-clock, .attr-xp").on("click", this._onClockClick.bind(this));
+		html.find(".attr-clock, .attr-xp").on("click", this._onXPClick.bind(this));
+		html.find(".cell--Clock path").on("click", this._onClockClick.bind(this));
 		html.find(".attr-track-value").on("click", this._onTrackValueClick.bind(this));
 		html.find(".attr-track-step").on("click", this._onTrackStepClick.bind(this));
 
@@ -447,7 +448,7 @@ export default class PbtaActorSheet extends ActorSheet {
 		}
 	}
 
-	async _onClockClick(event) {
+	async _onXPClick(event) {
 		event.preventDefault();
 		const dataset = event.currentTarget.dataset;
 		// Get the clicked value.
@@ -468,6 +469,28 @@ export default class PbtaActorSheet extends ActorSheet {
 
 		// Update the actor/token.
 		await this.actor.update({ [prop]: attr });
+	}
+
+	async _onClockClick(event) {
+		event.preventDefault();
+		// Find the parent svg
+		let svg = $(event.currentTarget).parents("svg")[0];
+		let path = svg.dataset.path;
+
+		const dataset = event.currentTarget.dataset;
+		// Get the clicked value.
+		let index = Number.parseInt(dataset.value || "0") + 1; // Adjust for 1-index
+
+		// Retrieve the attribute.
+		const attr = foundry.utils.deepClone(foundry.utils.getProperty(this.actor, path));
+
+		// Handle clicking the same slice to unset its value.
+		if (attr.value == index) {
+			index--;
+		}
+
+		// Update the actor/token.
+		await this.actor.update({ [`${path}.value`]: index });
 	}
 
 	async updateTrackThreshold(attr) {

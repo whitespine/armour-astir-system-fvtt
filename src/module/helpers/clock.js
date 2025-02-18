@@ -35,13 +35,13 @@ export function clockSlice(index, outOfMax) {
     return createSlicePath(90, rot*index, rot*(index + 1), {x: 100, y: 100}); // Assumes a svg viewpane of [0,200] x [0,200]
 }
 
-export function clock(size, value) {
+export function clock(path, size, value) {
     let slices = [];
     for(let index=0; index<size; index++) {
         slices.push(`<path d="${clockSlice(index, size)}" class="${value > index ? 'filled' : 'unfilled'}" data-value="${index}" />`)
     }
     console.log(slices);
-    return `<svg viewbox="0 0 200 200" style="width: 100px; height: 100px" >
+    return `<svg viewbox="0 0 200 200" style="width: 100px; height: 100px" data-path="${path}">
         <g class="sectors">
             ${slices.join("")}
         </g>

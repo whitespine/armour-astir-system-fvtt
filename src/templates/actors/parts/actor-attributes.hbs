@@ -34,7 +34,7 @@
 					{{/times}}
 				</div>
 			{{else if (eq attr.type "Clock")}}
-				{{{clock attr.max attr.value}}}
+				{{{clock (concat "system.attributes." key) attr.max attr.value}}}
 			{{else if (eq attr.type "ListMany") }}
 				<ul class="cell__checkboxes flexcol">
 					{{#each attr.options as |option optionKey|}}
