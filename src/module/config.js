@@ -150,6 +150,30 @@ PBTA.sheetConfig = {
             }
           }
         },
+        "gravity1": {
+          "position": "left",
+          "customLabel": true,
+          "userLabel": "Gravity 1",
+          "type": "Clock",
+          "max": 6,
+          "value": 0
+        },
+        "gravity2": {
+          "position": "left",
+          "customLabel": true,
+          "userLabel": "Gravity 2",
+          "type": "Clock",
+          "max": 6,
+          "value": 0
+        },
+        "gravity3": {
+          "position": "left",
+          "customLabel": true,
+          "userLabel": "Gravity 3",
+          "type": "Clock",
+          "max": 6,
+          "value": 0
+        },
         "improvement": {
           "label": "Improvement",
           "description": null,
