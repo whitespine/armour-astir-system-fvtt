@@ -226,8 +226,8 @@ PBTA.sheetConfig = {
           "label": "Gear",
           "moves": []
         },
-        "barter": {
-          "label": "Barter",
+        "astir": {
+          "label": "Astir",
           "moves": []
         }
       }
