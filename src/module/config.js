@@ -100,6 +100,10 @@ PBTA.sheetConfig = {
           "label": "Channel",
           "value": 0
         },
+        "crew": {
+          "label": "Crew",
+          "value": 0
+        },
         "special": {
           "label": "Spec",
           "value": 0
